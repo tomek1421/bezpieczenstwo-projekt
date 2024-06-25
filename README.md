@@ -1,18 +1,50 @@
-# bezpieczenstwo-projekt
+# Projekt Bezpieczeństwo
 
-### Instrukcja
-1.
-    1. odpalic dokcer compose
-    2. wyłaczyc jak sie skończy - ctrl + C
-    3. i odpalic ponownie (ponieważ za pierwszym razem serwer się nie łaczy z bazą danych)
-2. 
-    1. wejsc do keycloaka - localhost:8080 login: admin, haslo: admin
-    2. stworzyc przynajmniej 2 użytkowników i przypisać im role z api-client odpowiednio admin i user
+## Instrukcja
 
+### 1. Uruchomienie Docker Compose
 
-dla uzytkownika z rola Text 'show people' powinno zwrócic dane osób (pola: id, name i age) i uzytkownik moze wejsc do secured page (admin panel)\
-dla uzytkowników z rola user 'show people' powinno zwrócic dane osób bez pola age i uzytkownik nie moze wejscdo admin panel\
-dla uzytkownikow bez przypisanej roli 'show people' zwroci komunikat - not authenticated to get people 
+1. Uruchom Docker Compose:
+    ```bash
+    docker-compose up --build
+    ```
 
-backend jest odpalony na localhost:4001:
-endpoint GET: localhost:4001/people
+2. zatrzymaj działanie, użyj `Ctrl + C`
+
+3. Ponownie uruchom aplikację Docker Compose:
+    ```bash
+    docker-compose up --build
+    ```
+> UWAGA: Ponowne uruchomienie docker-copmose jest konieczne, ponieważ serwer nie łączy się poprawnie z bazą danych za pierwszym razem.
+
+### 2. Konfiguracja Keycloak
+
+1. Zaloguj się do panelu administracyjnego Keycloak:
+   - URL: [http://localhost:8080/auth/admin/](http://localhost:8080/auth/admin/)
+   - Login: `admin`
+   - Hasło: `admin`
+
+2. Utwórz przynajmniej dwóch użytkowników w realmie `Test`  i przypisz im role z clienta `api-client`:
+   - Użytkownik 1:
+     - Rola: `admin`
+   - Użytkownik 2:
+     - Rola: `user`
+
+### 3. Konfiguracja Ról API-Client w Keycloak
+  - Uprawnienia:
+    - Dla użytkowników z rolą `admin`:
+      - 'show people' zwraca dane osób (pola: id, name, age).
+      - Umożliwia dostęp do secured page (admin panel).
+    - Dla użytkowników z rolą `user`:
+      - 'show people' zwraca dane osób (pola: id, name) - bez pola `age`.
+      - Nie umożliwia dostępu do admin panel.
+
+- Dla użytkowników bez przypisanej roli:
+  - 'show people' zwraca komunikat: "Not authenticated to get people".
+
+> UWAGA: Użytkownicy domyślnie mają przypisaną rolę `user`.
+
+### 4. Backend API
+
+- Backend jest uruchomiony na: [http://localhost:4001](http://localhost:4001)
+- ZAbezpieczony Endpoint GET dla danych osób: [http://localhost:4001/people](http://localhost:4001/people)
