@@ -7,7 +7,6 @@ import WelcomePage from "./pages/Homepage";
 import SecuredPage from "./pages/Securedpage";
 import PrivateRoute from "./helpers/PrivateRoute";
 import './App.css';
-import Doc from "./components/Doc";
 
 function App() {
   const [token, setToken] = useState("")
@@ -29,7 +28,6 @@ function App() {
             />
           </Routes>
         </BrowserRouter>
-        <Doc />
       </ReactKeycloakProvider>
     </div>
   );
