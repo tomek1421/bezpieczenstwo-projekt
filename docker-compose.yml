@@ -12,11 +12,16 @@ services:
       DB_DATABASE: keycloak
       DB_USER: keycloak
       DB_PASSWORD: password
+      KEYCLOAK_IMPORT: /opt/keycloak/data/import/realm-export.json
     ports:
       - "8080:8080"
-    command: start-dev --verbose
+    command:
+      - start-dev
+      - --import-realm
     depends_on:
       - keycloak-postgres
+    volumes:
+      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
 
   keycloak-postgres:
     image: postgres
