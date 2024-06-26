@@ -9,13 +9,13 @@
     docker-compose up --build
     ```
 
+> UWAGA: Ponowne uruchomienie docker-copmose może być konieczne, jeśli serwer nie łączy się poprawnie z bazą danych za pierwszym razem.
 2. zatrzymaj działanie, użyj `Ctrl + C`
 
 3. Ponownie uruchom aplikację Docker Compose:
     ```bash
     docker-compose up --build
     ```
-> UWAGA: Ponowne uruchomienie docker-copmose jest konieczne, ponieważ serwer nie łączy się poprawnie z bazą danych za pierwszym razem.
 
 ### 2. Konfiguracja Keycloak
 
