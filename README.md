@@ -29,6 +29,7 @@
      - Rola: `admin`
    - Użytkownik 2:
      - Rola: `user`
+> UWAGA: Użytkownicy domyślnie mają przypisaną rolę `user` (można to zmienić w ustawieniach keycloaka).
 
 ### 3. Konfiguracja Ról API-Client w Keycloak
   - Uprawnienia:
@@ -41,8 +42,6 @@
 
 - Dla użytkowników bez przypisanej roli:
   - 'show people' zwraca komunikat: "Not authenticated to get people".
-
-> UWAGA: Użytkownicy domyślnie mają przypisaną rolę `user`.
 
 ### 4. Backend API
 
